@@ -1,6 +1,6 @@
 Task 0x00. Learning the basics of working with C using betty
 
-0-preprocessor - preprocess only (-E)
+0-preprocessor - preprocess only (-E)\n
 1-compiler - compile the c source code (-c)
 2-assembler - convert to assembly (-c -S)
 3-name - create executable and name however you want (gcc file.c -o name)
