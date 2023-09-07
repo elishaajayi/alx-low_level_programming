@@ -1,6 +1,10 @@
 #include <stdio.h>
 
-/* This is a C argument, sizeof */
+/**
+* main - this is where the program starts
+* Description: Program to print the size of types on my vm
+* Return: Code 0 means success
+*/
 int main(void)
 {
 	printf("Size of a char: %d byte(s)\n", sizeof(char));
