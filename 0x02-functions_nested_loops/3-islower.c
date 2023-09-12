@@ -1,26 +1,4 @@
-#include <stdio.h>
-
-int _islower(int c);
-
-/**
-* main - first function to run
-*
-* Return: 1 for lowercase
-*/
-int main(void)
-{
-	int r;
-
-	r = _islower('H');
-	putchar(r + '0');
-	r = _islower('o');
-	putchar(r + '0');
-	r = _islower(108);
-	putchar(r + '0');
-	putchar('\n');
-
-	return (0);
-}
+#include "main.h"
 
 /**
 * _islower - function to check lowercase
