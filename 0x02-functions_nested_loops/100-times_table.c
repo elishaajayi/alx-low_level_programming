@@ -11,9 +11,9 @@ void print_times_table(int n)
 
 	if (!(n > 15 || n < 0))
 	{
-		for (height = 0; height < n; height++)
+		for (height = 0; height <= n; height++)
 		{
-			for (width = 0; width < n; width++)
+			for (width = 0; width <= n; width++)
 			{
 				value = height * width;
 
