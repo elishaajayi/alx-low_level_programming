@@ -7,8 +7,8 @@
 */
 int main(void)
 {
-	long i = 1, j = 2, sum = j;
-	long k;
+	int i = 1, j = 2, sum = 0;
+	int k;
 
 	while (j < 4000000)
 	{
@@ -22,6 +22,6 @@ int main(void)
 		i = k;
 	}
 
-	printf("%lu\n", sum);
+	printf("%d\n", sum);
 	return (0);
 }
