@@ -17,23 +17,26 @@ void print_times_table(int n)
 			{
 				value = height * width;
 
-
 				if (width != 0 && value < 10)
 				{
 					_putchar(',');
 					_putchar(' ');
 					_putchar(' ');
+					_putchar(' ');
 				}
-
-				if (width != 0 && value > 9)
+				if (width != 0 && value > 9 && value < 100)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(' ');
+				}
+				if (width != 0 && value > 99)
 				{
 					_putchar(',');
 					_putchar(' ');
 				}
 				if (value < 10)
-				{
 					_putchar(value + '0');
-				}
 				else
 				{
 					_putchar((value / 10) + '0');
