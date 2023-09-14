@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 /**
  * main - first function to run
@@ -15,14 +16,14 @@ int main(void)
 	{
 		while (num % div == 0)
 		{
-			printf("%lu\n", div);
-
 			if (div > i)
 				i = div;
 			num = num / div;
 		}
 		div++;
 	}
+
+	printf("%lu\n", i);
 
 	return (0);
 }
