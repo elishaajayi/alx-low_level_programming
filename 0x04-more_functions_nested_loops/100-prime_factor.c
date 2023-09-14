@@ -7,24 +7,22 @@
  */
 int main(void)
 {
-	long num = 612852475143;
-	long div = 2;
-	long i = 0;
+	unsigned long num = 612852475143;
+	unsigned long div = 2;
+	unsigned long i = 0;
 
-	while (num / div != 1)
+	while (num > div)
 	{
-		if (num % div == 0)
+		while (num % div == 0)
 		{
+			printf("%lu\n", div);
+
 			if (div > i)
 				i = div;
-			div = 2;
 			num = num / div;
 		}
-		else
-			div++;
+		div++;
 	}
-
-	printf("%lu\n", i);
 
 	return (0);
 }
