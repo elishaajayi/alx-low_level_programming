@@ -8,22 +8,31 @@
  */
 int main(void)
 {
-	unsigned long num = 612852475143;
-	unsigned long div = 2;
-	unsigned long i = 0;
+	long largest = -1;
+	long n = 612852475143;
+	long i;
 
-	while (num > div)
+	while (n % 2 == 0)
 	{
-		while (num % div == 0)
-		{
-			if (div > i)
-				i = div;
-			num = num / div;
-		}
-		div++;
+		largest = 2;
+		n /= 2;
 	}
 
-	printf("%lu\n", i);
+	for (i = 3; i <= sqrt(n); i += 2)
+	{
+		while (n % i == 0)
+		{
+			largest = i;
+			n /= i;
+		}
+	}
+
+	if (n > 1)
+	{
+		largest = n;
+	}
+
+	printf("%lu\n", largest);
 
 	return (0);
 }
