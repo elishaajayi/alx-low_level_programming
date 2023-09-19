@@ -11,21 +11,17 @@ int main(void)
 {
 	int i, num;
 	int checksum = 2772;
-	int arr[10];
 
 	srand(time(NULL));
 
-	for (i = 0; i < 10; i++)
+	for (i = 0; i < 100; i++)
 	{
-		arr[i] = rand() % 300 + 201;
-
-		num += arr[i];
+		num = rand() % 100;
+		printf("%c", num);
+		checksum -= num;
 	}
 
-	if (num == checksum)
-	{
-		printf("Tada! Congrats\n");
-	}
+	printf("%c", checksum);
 
 	return (0);
 }
