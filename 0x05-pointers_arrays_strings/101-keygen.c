@@ -9,16 +9,17 @@
 */
 int main(void)
 {
-	int i, num;
-	int checksum = 2772;
+	int i = 0, checksum = 2772;
+	int num;
 
 	srand(time(NULL));
 
-	for (i = 0; i < 100; i++)
+	while (checksum > 122)
 	{
 		num = rand() % 100;
 		printf("%c", num);
 		checksum -= num;
+		i++;
 	}
 
 	printf("%c", checksum);
