@@ -29,6 +29,9 @@ int _atoi(char *s)
 
 		if (s[j] >= 48 && s[j] <= 57)
 			num = (num * 10) + (s[j] - '0');
+
+		if (i > 0 && (s[j] < 48 || s[j] > 57))
+			break;
 	}
 
 	if (sign % 2 != 0)
