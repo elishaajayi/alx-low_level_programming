@@ -30,7 +30,7 @@ int _atoi(char *s)
 			num = (num * 10) + (s[j] - '0');
 	}
 
-	if (sign > 0)
+	if (sign % 2 != 0)
 		num = num * (-1);
 
 	return (num);
