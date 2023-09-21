@@ -18,6 +18,14 @@ char *cap_string(char *str)
 	{
 		for (j = 0; j < 12; j++)
 		{
+			/* Captilize first word in the string */
+			if (i == 0)
+			{
+				if (str[i] >= 'a' && str[i] <= 'z')
+					str[i] = str[i] - 32;
+			}
+
+			/* Capitalize other words in the string */
 			if (!(i == len - 1))
 			{
 				if (str[i] == sep[j] || str[i] == '\t')
