@@ -8,31 +8,30 @@
 */
 int _strcmp(char *s1, char *s2)
 {
-	int a = 0, b = 0, out = 0;
-	int i, small;
+	int a = 0, b = 0;
+	int i;
 
-	/* I intend to add the up the values of each string and compare */
 	while (s1[a] != '\0')
 		a++;
 
-	while (s2[b] != '\0')
+	while (s1[b] != '\0')
 		b++;
 
 	if (a > b)
-		small = b;
+		return (15);
 	else if (a < b)
-		small = a;
+		return (-15);
 
-	for (i = 0; i < small; i++)
+	for (i = 0; i < a; i++)
 	{
 		if (s1[i] != s2[i])
-			out++;
+		{
+			if (s1[i] > s2[i])
+				return (15);
+			if (s1[i] < s2[i])
+				return (-15);
+		}
 	}
 
-	if (a > b && out > 0)
-		return (15);
-	else if (a < b && out > 0)
-		return (-15);
-	else
-		return (0);
+	return (0);
 }
