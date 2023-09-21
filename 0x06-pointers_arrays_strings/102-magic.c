@@ -1,10 +1,5 @@
 #include <stdio.h>
 
-/**
- * main - function to run
- * Description: print a bunch of numbers
- * Return: 0 for success
- */
 int main(void)
 {
 	int n;
