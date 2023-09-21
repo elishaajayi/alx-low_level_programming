@@ -7,9 +7,6 @@
  */
 void print_number(int n)
 {
-	char num[10];
-	int i = 0;
-
 	if (n < 0)
 	{
 		_putchar('-');
@@ -22,14 +19,9 @@ void print_number(int n)
 		return;
 	}
 
-	while (n > 0)
-	{
-		num[i] = (n % 10) + '0';
-		n = n / 10;
-		i++;
-	}
+	/* Read recursion: quite confusing */
+	if ((n / 10) > 0)
+		print_number(n / 10);
 
-	while (i > 0)
-		_putchar(num[--i]);
+	_putchar((n % 10) + '0');
 }
-
