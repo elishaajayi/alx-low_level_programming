@@ -1,73 +1,79 @@
 #include "main.h"
 
 /* Prototypes */
-int convert_int(char *n);
-void convert_char(int num, char *str);
+void to_int(char *str, int *num);
+void to_char(int num, char *str);
 
 /**
-* infinite_add - function to add two massive numbers
-* @n1: first number
-* @n2: second number
-* @r: result of the sum
-* @size_r: size of r in bytes
-* Return: r as the result to the function call
-*/
+ * infinite_add - function to add two massive numbers
+ * @n1: first number
+ * @n2: second number
+ * @r: result of the sum
+ * @size_r: size of r in bytes
+ * Return: r as the result to the function call
+ */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int num1, num2, sum, i;
-	char new[1000];
-	int len = 0;
+	int a = 0, b = 0;
+	int i, num1, num2, sum;
+	char tmp[1000];
 
-	num1 = convert_int(n1);
-	num2 = convert_int(n2);
+	/* Initializing r with null bytes to prevent error */
+	for (b = 0; b < size_r; b++)
+		r[b] = '\0';
+
+	/* Convert char to int */
+	to_int(n1, &num1);
+	to_int(n2, &num2);
 
 	sum = num1 + num2;
 
-	convert_char(sum, new);
+	/* Back to char */
+	to_char(sum, tmp);
 
-	while (new[len] != '\0')
-		len++;
+	while (tmp[a] != '\0')
+		a++;
+	a++;
 
-	if (size_r <= len)
+	if (a > size_r)
 		return (0);
 
-	for (i = 0; i < len; i++)
-		r[i] = new[i];
+	for (i = 0; i < a; i++)
+		r[i] = tmp[i];
+
+	r[a] = '\0';
 
 	return (r);
 }
 
 /**
- * convert_int - function to convert char to int
- * @n: the char to convert
- * Return: num the int value of char n
+ * to_int - convert char to int
+ * @str: char string
+ * @num: converted char str
+ * Return: void as in none
  */
-int convert_int(char *n)
+void to_int(char *str, int *num)
 {
-	int num = 0;
+	*num = 0;
 
-	while (*n != '\0')
+	while (*str >= '0' && *str <= '9')
 	{
-		if (*n >= '0' && *n <= '9')
-			num = num * 10 + (*n - '0');
-
-		n++;
+		*num = *num * 10 + (*str - '0');
+		str++;
 	}
-
-	return (num);
 }
 
 /**
- * convert_char - function to convert int to char
- * @num: the int to convert
- * @str: the new string produced
+ * to_char - convert char to int
+ * @str: char string
+ * @num: converted char str
  * Return: void as in none
  */
-void convert_char(int num, char *str)
+void to_char(int num, char *str)
 {
+	int rem = 0, i = 0, j = 0;
+	int last;
 	char temp;
-	int rem, last;
-	int i = 0, j = 0;
 
 	while (num != 0)
 	{
@@ -77,8 +83,8 @@ void convert_char(int num, char *str)
 		i++;
 	}
 
-	/* Reverse the string */
-	last = i;
+	/* Reverse char str */
+	last = i - 1;
 
 	while (j < last)
 	{
