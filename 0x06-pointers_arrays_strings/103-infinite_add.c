@@ -41,8 +41,6 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	for (i = 0; i < a; i++)
 		r[i] = tmp[i];
 
-	r[a] = '\0';
-
 	return (r);
 }
 
