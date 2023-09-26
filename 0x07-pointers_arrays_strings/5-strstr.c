@@ -1,5 +1,6 @@
 #include "main.h"
 #define NULL 0
+
 /**
 * _strstr - function to locate a substring
 * @haystack: string to be checked
@@ -8,8 +9,8 @@
 */
 char *_strstr(char *haystack, char *needle)
 {
-	int i = 0, j = 0;
-	int start;
+	int i = 0;
+	int j, start;
 
 	if (needle[0] == '\0')
 		return (haystack);
@@ -19,6 +20,7 @@ char *_strstr(char *haystack, char *needle)
 		if (haystack[i] == needle[0])
 		{
 		start = i;
+		j = 0;
 
 		while (needle[j] != '\0')
 		{
