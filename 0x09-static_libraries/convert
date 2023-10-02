@@ -1,2 +1,4 @@
 #!/bin/bash
-gcc -c $1.c -o $1.o
+gcc -c *.c
+ar rc $1.a *.o
+ranlib $1.a
