@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include <wctype.h>
 
 /**
  * main - start of runs in the function
@@ -14,10 +13,10 @@ int main(int argc, char *argv[])
 	int i, j;
 	int sum = 0, len = argc;
 
-	if (argc == 1)
+	if (len == 1)
 	{
-		printf("Error\n");
-		return (1);
+		printf("0\n");
+		return (0);
 	}
 
 	for (i = 1; i < len; i++)

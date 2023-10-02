@@ -35,8 +35,7 @@ int main(int argc, char *argv[])
 	numc += change / 2;
 	change = change % 2;
 
-	if (change == 1)
-		numc++;
+	numc += change / 1;
 
 	printf("%d\n", numc);
 	return (0);
