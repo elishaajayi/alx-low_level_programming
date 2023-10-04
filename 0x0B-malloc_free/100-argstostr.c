@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /* Prototype */
-int strlen(char *c);
+int num_char(char *c);
 
 /**
  * argstostr - function to concatenate parameters given
@@ -21,7 +21,7 @@ char *argstostr(int ac, char **av)
 
 	for (i = 0; i < ac; i++)
 	{
-		a += strlen(av[i]);
+		a += num_char(av[i]);
 	}
 
 	p = malloc(a + 1 + ac);
@@ -31,7 +31,7 @@ char *argstostr(int ac, char **av)
 
 	for (i = 0; i < ac; i++)
 	{
-		for (j = 0; j < (strlen(av[i])); j++)
+		for (j = 0; j < (num_char(av[i])); j++)
 		{
 			p[k] = av[i][j];
 			k++;
@@ -46,17 +46,17 @@ char *argstostr(int ac, char **av)
 }
 
 /**
- * strlen - counts number of char
+ * num_char - counts number of char
  * @c: string to count
  * Return: number of char.
  */
 
-int strlen(char *c)
+int num_char(char *c)
 {
 	int i = 0;
 
 	while (c[i])
 		i++;
-	
+
 	return (i);
 }
