@@ -95,7 +95,6 @@ char *multiply(char *num1, char *num2, int len1, int len2)
 	int startIndex = 0;
 	int len = len1 + len2;
 	char *result = (char *)malloc((len + 1) * sizeof(char));
-	char *finalResult;
 
 	for (i = len1 - 1; i >= 0; i--)
 	{
@@ -119,10 +118,5 @@ char *multiply(char *num1, char *num2, int len1, int len2)
 	while (startIndex < len - 1 && result[startIndex] == '0')
 		startIndex++;
 
-	finalResult = (char *)malloc((len - startIndex + 1) * sizeof(char));
-
-	strcpy(finalResult, result + startIndex);
-	free(result);
-
-	return (finalResult);
+	return (result + startIndex);
 }
