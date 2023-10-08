@@ -1,6 +1,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Prototype */
 int count(char *s);
@@ -94,6 +95,7 @@ char *multiply(char *num1, char *num2, int len1, int len2)
 	int startIndex = 0;
 	int len = len1 + len2;
 	char *result = (char *)malloc((len + 1) * sizeof(char));
+	char *finalResult;
 
 	for (i = len1 - 1; i >= 0; i--)
 	{
@@ -103,7 +105,7 @@ char *multiply(char *num1, char *num2, int len1, int len2)
 		for (j = len2 - 1; j >= 0; j--)
 		{
 			numl2 = num2[j] - '0';
-			numl = numl1 * numl2 + result[i + j + 1] + rem;
+			numl = (numl1 * numl2) + result[i + j + 1] + rem;
 			result[i + j + 1] = numl % 10;
 			rem = numl / 10;
 		}
@@ -117,5 +119,10 @@ char *multiply(char *num1, char *num2, int len1, int len2)
 	while (startIndex < len - 1 && result[startIndex] == '0')
 		startIndex++;
 
-	return (result + startIndex);
+	finalResult = (char *)malloc((len - startIndex + 1) * sizeof(char));
+
+	strcpy(finalResult, result + startIndex);
+	free(result);
+
+	return (finalResult);
 }
