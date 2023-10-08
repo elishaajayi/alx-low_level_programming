@@ -5,8 +5,7 @@
 /* Prototype */
 int count(char *s);
 int check(char *as);
-void create_array(char *s, int len, int *arr);
-void multiply(int *arr, int *arr1, int *arr2);
+char *multiply(char *num1, char *num2, int len1, int len2);
 
 /**
  * main - start of runs in the function
@@ -16,8 +15,8 @@ void multiply(int *arr, int *arr1, int *arr2);
  */
 int main(int argc, char *argv[])
 {
-	int mul, len1, len2, err1, err2;
-	int arr[2000], arr1[2000], arr2[2000];
+	int len1, len2, err1 = 0, err2 = 0;
+	char *result;
 
 	if (argc != 3)
 	{
@@ -28,7 +27,7 @@ int main(int argc, char *argv[])
 	err1 = check(argv[1]);
 	err2 = check(argv[2]);
 
-	if (err1 > 0 || err2 > 0)
+	if (err1 == 151 || err2 == 151)
 	{
 		printf("Error\n");
 		exit(98);
@@ -36,13 +35,10 @@ int main(int argc, char *argv[])
 
 	len1 = count(argv[1]);
 	len2 = count(argv[2]);
-	create_array(argv[1], len1, arr1);
-	create_array(argv[2], len2, arr2);
-	multiply(arr, arr1, arr2);
 
-	printf("%d\n", mul);
-	printf("%d\n", arr1[2]);
-	printf("%d\n", arr2[1]);
+	result = multiply(argv[1], argv[2], len1, len2);
+
+	printf("%s\n", result);
 
 	return (0);
 }
@@ -65,47 +61,61 @@ int count(char *s)
 /**
  * check - check if the string is made only of digits
  * @as: the argument int string to consider
- * Return: 0 for success and higher for fail
+ * Return: void as in none
  */
 int check(char *as)
 {
-	char c[2];
-	int i, error = 0;
+	int i;
+	int error = 23;
 
 	for (i = 0; as[i] != '\0'; i++)
 	{
-		c[0] = as[i];
-
-		if (!(isdigit(atoi(c))))
-			error++;
+		if (!(isdigit(as[i])))
+		{
+			error = 151;
+			break;
+		}
 	}
 
 	return (error);
 }
 
-
-/**
- * create_array - function to create the arrays needed for multiply
- * @s: the int string to consider
- * @len: the length of the string to index
- * @arr: the arr to create
- * Return: void as in none
- */
-void create_array(char *s, int len, int *arr)
-{
-	int i;
-
-	for (i = 0; i < len; i++)
-		arr[i] = s[i] - '0';
-}
-
 /**
  * multiply - function to carry out long multiplication
- * @arr: the product array
- * @arr1: first number array
- * @arr2: second number array
- * Return: void as in none
+ * @num1: the first argument
+ * @num2: the second
+ * @len1: length of arg1;
+ * @len2: length of arg2;
+ * Return: string of numbers
  */
-void multiply(int *arr, int *arr1, int *arr2)
+char *multiply(char *num1, char *num2, int len1, int len2)
 {
+	int i, j, numl, numl1, numl2, rem;
+	int startIndex = 0;
+	int len = len1 + len2;
+	char *result = (char *)malloc((len + 1) * sizeof(char));
+
+	for (i = len1 - 1; i >= 0; i--)
+	{
+		rem = 0;
+		numl1 = num1[i] - '0';
+
+		for (j = len2 - 1; j >= 0; j--)
+		{
+			numl2 = num2[j] - '0';
+			numl = numl1 * numl2 + result[i + j + 1] + rem;
+			result[i + j + 1] = numl % 10;
+			rem = numl / 10;
+		}
+
+		result[i] += rem;
+	}
+
+	for (i = 0; i < len; i++)
+		result[i] += '0';
+
+	while (startIndex < len - 1 && result[startIndex] == '0')
+		startIndex++;
+
+	return (result + startIndex);
 }
