@@ -1,6 +1,6 @@
 #include "main.h"
-#include <limits.h>
 #include <stdlib.h>
+#include <limits.h>
 
 /**
 * alloc_grid - function to a 2 dimensional array of integers
@@ -10,32 +10,35 @@
 */
 int **alloc_grid(int width, int height)
 {
-	int **pointer;
+	int **grid;
 	int i, j;
 
-	if (width <= 0 || height <= 0)/* A */
+	if (width <= 0 || height <= 0)
 		return (NULL);
 	if (width > INT_MAX || height > INT_MAX)
 		return (NULL);
-	pointer = malloc(height * sizeof(int *));/* D */
-	if (pointer == NULL)
+
+	grid = malloc(height * sizeof(int *)); /* int * because pointer to pointer*/
+
+	if (grid == NULL)
 	{
-		free(pointer);
+		free(grid);
 		return (NULL);
 	}
-	for (i = 0; i < height; i++)/* E */
+	for (i = 0; i < height; i++)
 	{
-		pointer[i] = malloc(width * sizeof(int));
-		if (pointer[i] == NULL)
+		grid[i] = malloc(width * sizeof(int));
+		if (grid[i] == NULL)
 		{
 			for ( ; i >= 0; i--)
-				free(pointer[i]);
-			free(pointer);
+				free(grid[i]);
+			free(grid);
 			return (NULL);
 		}
 	}
 	for (i = 0; i < height; i++)/* F */
 		for (j = 0; j < width; j++)
-			pointer[i][j] = 0;
-	return (pointer);/* G */
+			grid[i][j] = 0;
+
+	return (grid);
 }

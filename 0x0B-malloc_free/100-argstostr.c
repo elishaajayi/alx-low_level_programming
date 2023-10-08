@@ -12,9 +12,9 @@ int num_char(char *c);
  */
 char *argstostr(int ac, char **av)
 {
-	int i, a = 0, k = 0;
+	int i, a = 0, b = 0;
 	int j;
-	char *p;
+	char *s;
 
 	if (ac == 0 || av == NULL)
 		return (0);
@@ -24,25 +24,25 @@ char *argstostr(int ac, char **av)
 		a += num_char(av[i]);
 	}
 
-	p = malloc(a + 1 + ac);
+	s = malloc(a + 1 + ac);
 
-	if (p == NULL)
+	if (s == NULL)
 		return (0);
 
 	for (i = 0; i < ac; i++)
 	{
 		for (j = 0; j < (num_char(av[i])); j++)
 		{
-			p[k] = av[i][j];
-			k++;
+			s[b] = av[i][j];
+			b++;
 		}
-		p[k] = '\n';
-		k++;
+		s[b] = '\n';
+		b++;
 	}
 
-	p[k] = '\0';
+	s[b] = '\0';
 
-	return (p);
+	return (s);
 }
 
 /**

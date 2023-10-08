@@ -11,18 +11,19 @@ int count(char *s);
  **/
 char **strtow(char *str)
 {
-	int i, j, k, l, n = 0, wc = 0;
-	char **w;
+	int i, j, k, l;
+	int n = 0, num = 0;
+	char **c;
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
 	n = count(str);
 	if (n == 1)
 		return (NULL);
-	w = (char **)malloc(n * sizeof(char *));
-	if (w == NULL)
+	c = (char **)malloc(n * sizeof(char *));
+	if (c == NULL)
 		return (NULL);
-	w[n - 1] = NULL;
+	c[n - 1] = NULL;
 	i = 0;
 	while (str[i])
 	{
@@ -31,26 +32,27 @@ char **strtow(char *str)
 			for (j = 1; str[i + j] != ' ' && str[i + j]; j++)
 				;
 			j++;
-			w[wc] = (char *)malloc(j * sizeof(char));
+			c[num] = (char *)malloc(j * sizeof(char));
 			j--;
-			if (w[wc] == NULL)
+
+			if (c[num] == NULL)
 			{
-				for (k = 0; k < wc; k++)
-					free(w[k]);
-				free(w[n - 1]);
-				free(w);
+				for (k = 0; k < num; k++)
+					free(c[k]);
+				free(c[n - 1]);
+				free(c);
 				return (NULL);
 			}
 			for (l = 0; l < j; l++)
-				w[wc][l] = str[i + l];
-			w[wc][l] = '\0';
-			wc++;
+				c[num][l] = str[i + l];
+			c[num][l] = '\0';
+			num++;
 			i += j;
 		}
 		else
 			i++;
 	}
-	return (w);
+	return (c);
 }
 
 /**
