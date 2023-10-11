@@ -11,6 +11,6 @@ void print_name(char *name, void (*f)(char *))
 	void (*f_ptr)(char *) = f;
 
 	/* Always check for NULL */
-	if (name != NULL && f_ptr != NULL)
+	if (f_ptr != NULL)
 		f_ptr(name);
 }
