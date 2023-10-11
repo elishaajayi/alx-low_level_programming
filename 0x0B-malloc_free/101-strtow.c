@@ -74,6 +74,7 @@ int count(char *s)
 		else if (i == 0)
 			n++;
 	}
+
 	n++;
 	return (n);
 }
