@@ -27,13 +27,13 @@ int main(int argc, char *argv[])
 
 	for (i = 0; i < val; i++)
 	{
-		printf("%02x", ((unsigned char *)main)[i]);
+		printf("%02hhx", *((char *)main + i));
 
-		if (val != (val - 1))
+		if (i < val - 1)
 			printf(" ");
+		else
+			printf("\n");
 	}
-
-	printf("\n");
 
 	return (0);
 }
