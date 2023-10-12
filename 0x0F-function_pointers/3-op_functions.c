@@ -4,7 +4,7 @@
  * op_add - function to add
  * @a: integer one
  * @b: integer two
- * Return: sum
+ * Return: sum of a and b
  */
 int op_add(int a, int b)
 {
@@ -15,7 +15,7 @@ int op_add(int a, int b)
  * op_sub - function to subtract
  * @a: integer one
  * @b: integer two
- * Return: difference
+ * Return: difference between a and b
  */
 int op_sub(int a, int b)
 {
@@ -26,7 +26,7 @@ int op_sub(int a, int b)
  * op_mul - function to multiply
  * @a: integer one
  * @b: integer two
- * Return: product
+ * Return: product of a and b
  */
 int op_mul(int a, int b)
 {
@@ -37,7 +37,7 @@ int op_mul(int a, int b)
  * op_div - function to divide
  * @a: integer one
  * @b: integer two
- * Return: division
+ * Return: division of a with b
  */
 int op_div(int a, int b)
 {
@@ -48,7 +48,7 @@ int op_div(int a, int b)
  * op_mod - function to compute modulus
  * @a: integer one
  * @b: integer two
- * Return: remainder
+ * Return: remainder between a and b
  */
 int op_mod(int a, int b)
 {
