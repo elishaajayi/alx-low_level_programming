@@ -38,9 +38,7 @@ int main(int argc, char *argv[])
 		exit(100);
 	}
 
-	if (operation != NULL)
-		result = operation(num1, num2);
-
+	result = operation(num1, num2);
 	printf("%d\n", result);
 
 	return (0);
