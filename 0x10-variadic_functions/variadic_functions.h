@@ -12,4 +12,17 @@ void print_numbers(const char *separator, const unsigned int n, ...);
 void print_strings(const char *separator, const unsigned int n, ...);
 void print_all(const char * const format, ...);
 
+/* Format required for format */
+typedef struct character_format
+{
+	char *cpicker;
+	void (*correct_function)(va_list);
+} char_format;
+
+/* Prototypes for correct_function */
+void print_one_char(va_list characters);
+void print_integers(va_list characters);
+void print_float(va_list characters);
+void print_string(va_list characters);
+
 #endif
