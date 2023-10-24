@@ -1,57 +1,48 @@
 #include "lists.h"
 
 /**
- * save_ptr - save pointers to a list
- * @list: list given
- * @size: to contain the old list
- * @new: new node coming in
- * Return: the list created
- */
-const listint_t **save_ptr(const listint_t **list, int size,
-const listint_t *new)
-{
-	int i;
-	const listint_t **newlist;
-
-	newlist = malloc(size * sizeof(listint_t *));
-	if (newlist == NULL)
-	{
-		free(list);
-		exit(98);
-	}
-	for (i = 0; i < size - 1; i++)
-		newlist[i] = list[i];
-	newlist[i] = new;
-	free(list);
-	return (newlist);
-}
-
-/**
- * print_listint_safe - print the linked list.
- * @head: head not the tail
- * Return: the number of nodes
+ * print_listint_safe - prints the ll
+ * @head: the first
+ * Return: number of nodes
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	int i, num = 0;
-	const listint_t **list = NULL;
+	int length = 0, index = 0, i = 0, j = 0, check = 0;
+	listint_t const **save_ptr = malloc(sizeof(listint_t *) * 1024);
+
+	if (!save_ptr)
+		exit(98);
 
 	while (head != NULL)
 	{
-		for (i = 0; i < num; i++)
+		for (i = 0; i < length; i++)
 		{
-			if (head == list[i])
+			if (head == save_ptr[i])
 			{
-				printf("-> [%p] %d\n", (void *)head, head->n);
-				free(list);
-				return (num);
+				check = 1;
+				index = i;
+				break;
 			}
+			else
+				check = 0;
 		}
-		num++;
-		list = save_ptr(list, num, head);
-		printf("[%p] %d\n", (void *)head, head->n);
+
+		if (check == 1)
+			break;
+
+		save_ptr[length] = head;
 		head = head->next;
+		length++;
 	}
-	free(list);
-	return (num);
+
+	while (i < length)
+	{
+		printf("[%p] %d\n", (void *)save_ptr[i], save_ptr[i]->n);
+		i++;
+	}
+
+	if (check == 1)
+		printf("-> [%p] %d\n", (void *)save_ptr[index], save_ptr[index]->n);
+	free(save_ptr);
+	return (length);
 }
