@@ -8,7 +8,7 @@
 size_t print_listint_safe(const listint_t *head)
 {
 	int length = 0, index = 0, i = 0, j = 0, check = 0;
-	listint_t const **save_ptr = malloc(sizeof(listint_t *) * 1024);
+	listint_t const **save_ptr = malloc(sizeof(listint_t) * 10);
 
 	if (!save_ptr)
 		exit(98);
