@@ -35,10 +35,10 @@ size_t print_listint_safe(const listint_t *head)
 		length++;
 	}
 
-	while (i < length)
+	while (j < length)
 	{
-		printf("[%p] %d\n", (void *)save_ptr[i], save_ptr[i]->n);
-		i++;
+		printf("[%p] %d\n", (void *)save_ptr[j], save_ptr[j]->n);
+		j++;
 	}
 
 	if (check == 1)
