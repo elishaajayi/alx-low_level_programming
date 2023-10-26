@@ -27,35 +27,35 @@ listint_t **save_ptr2(listint_t **list, int size, listint_t *new)
 
 /**
  * free_listint_safe - free the linked list.
- * @head: first and the guardian
+ * @h: first and the guardian
  * Return: the number of nodes
  */
-size_t free_listint_safe(listint_t **head)
+size_t free_listint_safe(listint_t **h)
 {
 	int i, num = 0;
 	listint_t **list = NULL;
 	listint_t *next;
 
-	if (head == NULL || *head == NULL)
+	if (h == NULL || *h == NULL)
 		return (num);
 
-	while (*head != NULL)
+	while (*h != NULL)
 	{
 		for (i = 0; i < num; i++)
 		{
-			if (*head == list[i])
+			if (*h == list[i])
 			{
-				*head = NULL;
+				*h = NULL;
 				free(list);
 				return (num);
 			}
 		}
 
 		num++;
-		list = save_ptr2(list, num, *head);
-		next = (*head)->next;
-		free(*head);
-		*head = next;
+		list = save_ptr2(list, num, *h);
+		next = (*h)->next;
+		free(*h);
+		*h = next;
 	}
 
 	free(list);
