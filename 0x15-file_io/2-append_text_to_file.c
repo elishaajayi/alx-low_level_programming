@@ -8,17 +8,16 @@
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int desc = open(filename, O_WRONLY | O_APPEND);
-	int write_result;
+	int desc, len, write_result;
 
 	if (filename == NULL)
 		return (-1);
 	if (text_content == NULL)
 		return (-1);
-	if (desc == -1)
-		return (-1);
 
-	write_result = write(desc, text_content, strlen(text_content));
+	len = strlen(text_content);
+	desc = open(filename, O_WRONLY | O_APPEND);
+	write_result = write(desc, text_content, len);
 
 	if (desc == -1 || write_result == -1)
 		return (-1);
