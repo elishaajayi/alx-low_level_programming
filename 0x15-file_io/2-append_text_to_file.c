@@ -8,11 +8,9 @@
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int desc, len, write_result;
+	int desc, len = 0, write_result;
 
 	if (filename == NULL)
-		return (-1);
-	if (text_content == NULL)
 		return (-1);
 
 	len = strlen(text_content);
