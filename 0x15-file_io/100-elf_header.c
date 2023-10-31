@@ -106,8 +106,10 @@ void display_error(const char *message)
  */
 void display_elf_header_info(Elf64_Ehdr *elf_header)
 {
+	int i;
+
 	printf("  Magic:   ");
-	for (int i = 0; i < EI_NIDENT; i++)
+	for (i = 0; i < EI_NIDENT; i++)
 		printf("%02x ", elf_header->e_ident[i]);
 
 	printf("\n");
@@ -153,4 +155,5 @@ int main(int argc, char *argv[])
 	display_elf_header_info(&elf_header);
 
 	close(fd);
-
+	return (0);
+}
