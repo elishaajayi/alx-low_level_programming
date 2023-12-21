@@ -1,5 +1,8 @@
 #include "hash_tables.h"
 
+/* Prototypes */
+int shash_table_set_sorted(shash_table_t *ht, shash_node_t *new);
+
 /**
  * shash_table_create - Creates a sorted hash table.
  * @size: The size of new sorted hash table.
@@ -58,7 +61,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		}
 		tmp = tmp->snext;
 	}
-
 	new = malloc(sizeof(shash_node_t));
 	if (new == NULL)
 	{
@@ -75,36 +77,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	new->value = value_copy;
 	new->next = ht->array[index];
 	ht->array[index] = new;
-
-	if (ht->shead == NULL)
-	{
-		new->sprev = NULL;
-		new->snext = NULL;
-		ht->shead = new;
-		ht->stail = new;
-	}
-	else if (strcmp(ht->shead->key, key) > 0)
-	{
-		new->sprev = NULL;
-		new->snext = ht->shead;
-		ht->shead->sprev = new;
-		ht->shead = new;
-	}
-	else
-	{
-		tmp = ht->shead;
-		while (tmp->snext != NULL && strcmp(tmp->snext->key, key) < 0)
-			tmp = tmp->snext;
-		new->sprev = tmp;
-		new->snext = tmp->snext;
-		if (tmp->snext == NULL)
-			ht->stail = new;
-		else
-			tmp->snext->sprev = new;
-		tmp->snext = new;
-	}
-
-	return (1);
+	return (shash_table_set_sorted(ht, new));
 }
 
 /**
@@ -202,4 +175,45 @@ void shash_table_delete(shash_table_t *ht)
 
 	free(head->array);
 	free(head);
+}
+
+/**
+ * shash_table_set_sorted - Inserts a node into the sorted linked list
+ * @ht: A pointer to the sorted hash table.
+ * @new: A pointer to the newly added node.
+ * Return: Upon failure - 0 otherwise - 1.
+ */
+int shash_table_set_sorted(shash_table_t *ht, shash_node_t *new)
+{
+	shash_node_t *tmp;
+
+	if (ht->shead == NULL)
+	{
+		new->sprev = NULL;
+		new->snext = NULL;
+		ht->shead = new;
+		ht->stail = new;
+	}
+	else if (strcmp(ht->shead->key, new->key) > 0)
+	{
+		new->sprev = NULL;
+		new->snext = ht->shead;
+		ht->shead->sprev = new;
+		ht->shead = new;
+	}
+	else
+	{
+		tmp = ht->shead;
+		while (tmp->snext != NULL && strcmp(tmp->snext->key, new->key) < 0)
+			tmp = tmp->snext;
+		new->sprev = tmp;
+		new->snext = tmp->snext;
+		if (tmp->snext == NULL)
+			ht->stail = new;
+		else
+			tmp->snext->sprev = new;
+		tmp->snext = new;
+	}
+
+	return (1);
 }
